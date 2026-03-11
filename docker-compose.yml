@@ -1,0 +1,24 @@
+services:
+  postgres-mcp-dev:
+    image: crystaldba/postgres-mcp:latest
+    container_name: postgres-mcp-dev
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URI: ${DATABASE_URI_DEV}
+    command:
+      - --access-mode=restricted
+      - --transport=sse
+
+  postgres-mcp-prod:
+    image: crystaldba/postgres-mcp:latest
+    container_name: postgres-mcp-prod
+    restart: unless-stopped
+    ports:
+      - "8001:8000"
+    environment:
+      DATABASE_URI: ${DATABASE_URI_PROD}
+    command:
+      - --access-mode=restricted
+      - --transport=sse
